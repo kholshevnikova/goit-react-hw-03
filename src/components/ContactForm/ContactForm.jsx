@@ -10,7 +10,7 @@ export default function ContactForm({ onAdd }) {
     console.log(values);
     actions.resetForm();
     const id = nanoid();
-    onAdd({ name: values.name, number: values.number, id: id });
+    onAdd({ id: id, name: values.name, number: values.number });
   };
 
   const nameFieldId = useId();
@@ -37,7 +37,7 @@ export default function ContactForm({ onAdd }) {
       onSubmit={handleSumbit}
       validationSchema={FeedbackSchema}
     >
-      <Form>
+      <Form className={css.formContainer}>
         <div className={css.fieldContainer}>
           <label htmlFor={nameFieldId}>Name</label>
           <Field type="text" name="name" id={nameFieldId}></Field>
@@ -49,7 +49,9 @@ export default function ContactForm({ onAdd }) {
           <ErrorMessage name="number" component="span" />
         </div>
 
-        <button type="submit">Add contact</button>
+        <button type="submit" className={css.addButton}>
+          Add contact
+        </button>
       </Form>
     </Formik>
   );
